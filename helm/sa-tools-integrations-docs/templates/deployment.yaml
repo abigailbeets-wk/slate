@@ -23,7 +23,7 @@ spec:
         # for service discovery.
         consul.register/enabled: "true"
         consul.register/pod.container.name: "{{ .Chart.Name }}"
-        consul.register/service.name: "cerebral-docs"
+        consul.register/service.name: "sa-tools-integrations-docs"
         {{- if .Values.iamRole }}
         iam.amazonaws.com/role: "{{ .Values.iamRole }}"
         {{- end }}

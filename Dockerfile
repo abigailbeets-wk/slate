@@ -30,10 +30,12 @@ RUN npm config set unsafe-perm true
 RUN npm install -g widdershins@3.6.0
 
 # generate documentation
-RUN widdershins https://h.app.wdesk.com/s/cerebral/v2/api-docs -o source/includes/_swagger.md
+# can add as many as you want, just name them differently
+# RUN widdershins https://h.app.wdesk.com/s/sa-tools-dataset-directory/api/Directory/swagger/v1/swagger.json -o source/includes/_swagger.md
+RUN widdershins swagger.json -o source/includes/_directory_swagger.md
 
 # remove header from swagger, this is ugly but widdershins adds meta we don't need, the size of the meta (in lines) is deterministic so we know how many to remove
-RUN tail -n +19 < source/includes/_swagger.md > source/includes/_swagger.md
+RUN tail -n +19 < source/includes/_directory_swagger.md > source/includes/_directory_swagger.md
 
 # build the app which puts the compiled html, etc into the build directory
 RUN bundle exec middleman build --clean
@@ -55,7 +57,7 @@ RUN npm install http-server -g
 RUN touch npm.lock
 
 # bring the static html in
-COPY --from=builder /local-build/build/ s/cerebral-docs/
+COPY --from=builder /local-build/build/ s/sa-tools-integrations-docs/
 
 # bring in gem lock
 COPY --from=builder /local-build/Gemfile.lock /static/Gemfile.lock

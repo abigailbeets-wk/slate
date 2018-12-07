@@ -6,8 +6,8 @@
 # Docker image to run.
 image:
   registry: drydock.workiva.net
-  repo: workiva/slate
-  tag: '1514604'
+  repo: abigailbeets-wk/slate
+  tag: 'latest'
   # Uncomment to specify a full docker image for local development
   # override: local_testing_image_name:latest
 
@@ -42,14 +42,14 @@ ingress:
   rules:
     # Rules for h.<clusterDomain> (ex. h.wk-dev.wdesk.org).
     - subDomain: h
-      pathPrefix: /s/cerebral-docs
+      pathPrefix: /s/sa-tools-integrations-docs
       backends:
         - path: /
           port: 8000
     # Rules for k.<clusterDomain> (ex. k.wk-dev.wdesk.org).
     # This rule is for testing Kubernetes ingress before we switch
     - subDomain: k
-      pathPrefix: /s/cerebral-docs
+      pathPrefix: /s/sa-tools-integrations-docs
       backends:
         - path: /
           port: 8000
@@ -79,7 +79,7 @@ runAsRoot: true
 # See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 readinessProbe:
   httpGet:
-    path: /s/cerebral-docs/
+    path: /s/sa-tools-integrations-docs/
     port: 8000
   initialDelaySeconds: 10
   periodSeconds: 10

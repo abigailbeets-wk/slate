@@ -1,0 +1,279 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "Adaptor Directory API"
+    },
+    "paths": {
+        "/api/Directory/health": {
+            "get": {
+                "tags": [
+                    "Directory"
+                ],
+                "operationId": "ApiDirectoryHealthGet",
+                "consumes": [],
+                "produces": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/Directory/postback": {
+            "post": {
+                "tags": [
+                    "Directory"
+                ],
+                "operationId": "ApiDirectoryPostbackPost",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json",
+                    "text/plain"
+                ],
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "model",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/PostbackModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/Directory/addService": {
+            "post": {
+                "tags": [
+                    "Directory"
+                ],
+                "operationId": "ApiDirectoryAddServicePost",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json",
+                    "text/plain"
+                ],
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "model",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ServiceModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/Directory/callService": {
+            "post": {
+                "tags": [
+                    "Directory"
+                ],
+                "operationId": "ApiDirectoryCallServicePost",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json",
+                    "text/plain"
+                ],
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ServiceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/Directory/getServices": {
+            "get": {
+                "tags": [
+                    "Directory"
+                ],
+                "operationId": "ApiDirectoryGetServicesGet",
+                "consumes": [],
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "datasetCompatible",
+                        "in": "query",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "PostbackModel": {
+            "required": [
+                "requestID"
+            ],
+            "type": "object",
+            "properties": {
+                "requestID": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "resultUrl": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                }
+            }
+        },
+        "ServiceModel": {
+            "type": "object",
+            "properties": {
+                "serviceID": {
+                    "type": "string"
+                },
+                "roleForPermission": {
+                    "type": "string"
+                },
+                "adaptorName": {
+                    "type": "string"
+                },
+                "datasetCompatible": {
+                    "type": "boolean"
+                },
+                "statusState": {
+                    "type": "string"
+                },
+                "serviceEndpoints": {
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EndpointModel"
+                    }
+                },
+                "requestID": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "serviceUrl": {
+                    "type": "string"
+                },
+                "created_By": {
+                    "type": "string"
+                },
+                "created_Date": {
+                    "type": "string"
+                },
+                "modified_By": {
+                    "type": "string"
+                },
+                "modified_Date": {
+                    "type": "string"
+                }
+            }
+        },
+        "EndpointModel": {
+            "type": "object",
+            "properties": {
+                "serviceName": {
+                    "type": "string"
+                },
+                "httpMethod": {
+                    "type": "string"
+                },
+                "endpoint": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ModelParams"
+                    }
+                }
+            }
+        },
+        "ModelParams": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ServiceRequest": {
+            "type": "object",
+            "properties": {
+                "serviceID": {
+                    "type": "string"
+                },
+                "serviceEndpoint": {
+                    "$ref": "#/definitions/ServiceEndpoint"
+                },
+                "callbackUrl": {
+                    "type": "string"
+                },
+                "requestID": {
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        },
+        "ServiceEndpoint": {
+            "type": "object",
+            "properties": {
+                "endpointName": {
+                    "type": "string"
+                },
+                "httpMethod": {
+                    "type": "string"
+                },
+                "requestBody": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
-# cerebral-docs
+# sa-tools-integrations-docs
 
-[cerebral-docs](https://github.com/Workiva/slate)
+[sa-tools-integrations-docs](https://github.com/Workiva/slate)
 
 
 ## Configuration
@@ -22,7 +22,7 @@ resources.limits.cpu | CPU limit for pod | `0.25`
 resources.limits.memory | Memory limit for pod | `512Mi`
 resources.requests.cpu | Requested CPU for pod | `0.25`
 resources.requests.memory | Requested Memory for pod | `512Mi`
-readinessProbe.httpGet.path | Path to request for readiness probe | `/s/cerebral-docs/`
+readinessProbe.httpGet.path | Path to request for readiness probe | `/s/sa-tools-integrations-docs/`
 readinessProbe.httpGet.port | Port to request for readiness probe | `8000`
 readinessProbe.initialDelaySeconds | Time to wait before performing readiness probe | `10`
 readinessProbe.periodSeconds | Time between readiness probes | `10`
@@ -47,7 +47,7 @@ environment:
 Or via the commandline:
 
 ```console
-$ helm install --name cerebral-docs --set environment.MY_ENV_VAR=value .
+$ helm install --name sa-tools-integrations-docs --set environment.MY_ENV_VAR=value .
 ```
 
 ## Secrets
@@ -66,7 +66,7 @@ used for local development.
 Secrets should be passed in at runtime via the commandline:
 
 ```console
-$ helm install --name cerebral-docs --set secrets.MY_SECRET=secret_value .
+$ helm install --name sa-tools-integrations-docs --set secrets.MY_SECRET=secret_value .
 ```
 
 Values provided as secrets will uploaded as Kubernetes Secrets and mounted into containers as environment variables with the provided name.
@@ -147,7 +147,7 @@ avoid Helm converting your number to a float. [Customizing Charts](https://docs.
 $ helm upgrade --install \
        --set ingress.clusterDomain="CLUSTER_DOMAIN_PLACEHOLDER" \
        --set environment.TRACE_SAMPLING="TRACE_SAMPLING_PLACEHOLDER" \
-       cerebral-docs .
+       sa-tools-integrations-docs .
 ```
 
 If you want to reuse values when doing an upgrade, you can use the
@@ -155,7 +155,7 @@ If you want to reuse values when doing an upgrade, you can use the
 of the chart and merge in any values passed in.
 
 ```console
-$ helm upgrade --reuse-values cerebral-docs .
+$ helm upgrade --reuse-values sa-tools-integrations-docs .
 ```
 
 ### Deleting the Chart
@@ -163,7 +163,7 @@ $ helm upgrade --reuse-values cerebral-docs .
 https://docs.helm.sh/helm/#helm-delete
 
 ```console
-$ helm delete --purge cerebral-docs
+$ helm delete --purge sa-tools-integrations-docs
 ```
 
 ### Testing Changes to Chart
@@ -179,5 +179,5 @@ $ helm lint .
 #### Dry Run
 
 ```console
-$ helm install --dry-run --debug --name cerebral-docs .
+$ helm install --dry-run --debug --name sa-tools-integrations-docs .
 ```

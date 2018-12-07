@@ -1,5 +1,5 @@
 ---
-title: Cerebral API
+title: Dataset Adaptor Directory API
 language_tabs:
   - shell: Shell
   - http: HTTP
@@ -9,11 +9,10 @@ language_tabs:
   - python: Python
   - java: Java
   - go: Go
+  - csharp: C#
 toc_footers: []
 includes:
-  - authentication
-  - workflows
-  - swagger
+  - directory_swagger
 search: true
 highlight_theme: darkula
 headingLevel: 1

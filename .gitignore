@@ -26,4 +26,4 @@ s/
 .vscode
 
 # generated files
-source/includes/_swagger.md
+source/includes/_directory_swagger.md
